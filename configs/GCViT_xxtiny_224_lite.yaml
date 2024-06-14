@@ -1,0 +1,10 @@
+MODEL:
+  TYPE: gcvit
+  NAME: swin_tiny_patch4_window7_224
+  DROP_PATH_RATE: 0.2
+  PRETRAIN_CKPT: "./pretrained_ckpt/gcvit_1k_xxtiny.pth.tar"
+  GCVIT:
+    EMBED_DIM: 64
+    DEPTHS: [2, 2, 2, 1]
+    NUM_HEADS: [2, 4, 8, 16]
+    WINDOW_SIZE:[7, 7, 14, 7]
