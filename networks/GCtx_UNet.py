@@ -1,4 +1,3 @@
-from torch.nn.modules.upsampling import Upsample
 #!/usr/bin/env python3
 
 # Copyright (c) 2023, NVIDIA CORPORATION.  All rights reserved.
