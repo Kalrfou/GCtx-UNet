@@ -1,1 +1,1 @@
-### Please add the pre-trained GC-ViT xx-Tiny model to this folder.
+ Please add the pre-trained GC-ViT xx-Tiny model to this folder.
