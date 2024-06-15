@@ -11,6 +11,9 @@
 The datasets we used are provided by the authors of TransUnet. You can access the processed data through this [link](https://drive.google.com/drive/folders/1ACJEoTp-uqfFJ73qS3eUObQh52nGuzCd). For more details, please refer to the "./datasets/README.md" file. Alternatively, you can go ahead and request the preprocessed data by emailing jienengchen01@gmail.com. If you use the preprocessed data, please ensure it is solely for research purposes and do not redistribute it by TransUnet's License.
 ## 4. Train/Test
 ### 1) Train
+```bash
+CUDA_VISIBLE_DEVICES=0  python -W ignore test.py
+```
 ### 2) Testing
 #### Get pre-trained GCtx-UNet model weights on the Synapse dataset:  [link](https://panthers-my.sharepoint.com/:u:/g/personal/tzhao_uwm_edu/ER6J2LwtirFOip2m6u7hQt8BBdph8P2OrfI_Wmj8MNMQfg?e=7uiftc)
 download the file and put it into the folder model_out.
