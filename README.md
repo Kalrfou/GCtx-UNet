@@ -8,7 +8,7 @@
 ## References
 * [Swin-Unet](https://github.com/HuCaoFighting/Swin-Unet)
 * [TransUnet](https://github.com/Beckschen/TransUNet)
-* [SwinTransformer](https://github.com/microsoft/Swin-Transformer)
+* [GC-ViT](https://github.com/NVlabs/GCVit)
   
 ## Citation
 
