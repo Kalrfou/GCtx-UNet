@@ -5,7 +5,7 @@
 ## Pre-trained model:
 #### 1.  Download pre-trained GC-ViT transformer model (GCViT-xxtiny) pre-trained on ImageNet1K 
    [Get pre-trained model in this link] (https://drive.usercontent.google.com/download?id=1apSIWQCa5VhWLJws8ugMTuyKzyayw4Eh&export=download&authuser=0): Put pretrained xx-Tiny into folder "pretrained_ckpt/"
-
+#### 2.  Download pre-trained GC-ViT transformer model (GCViT-xxtiny) pre-trained on MedNet 
 
 ##  Prepare data
 The datasets we used are provided by the authors of TransUnet. You can access the processed data through this [link](https://drive.google.com/drive/folders/1ACJEoTp-uqfFJ73qS3eUObQh52nGuzCd). For more details, please refer to the "./datasets/README.md" file. Alternatively, you can go ahead and request the preprocessed data by emailing jienengchen01@gmail.com. If you use the preprocessed data, please ensure it is solely for research purposes and do not redistribute it by TransUnet's License.
