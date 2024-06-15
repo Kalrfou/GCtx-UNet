@@ -12,6 +12,7 @@ The datasets we used are provided by the authors of TransUnet. You can access th
 
 ## Testing
 #### Get pre-trained GCtx-UNet model weights on the Synapse dataset:
+[Swin-Unet](https://github.com/HuCaoFighting/Swin-Unet)
 Copy this file to the model_out folder [link]([https://drive.google.com/drive/folders/1ACJEoTp-uqfFJ73qS3eUObQh52nGuzCd](https://panthers-my.sharepoint.com/:u:/g/personal/tzhao_uwm_edu/ER6J2LwtirFOip2m6u7hQt8BBdph8P2OrfI_Wmj8MNMQfg?e=HIXtw1))
 ## References
 * [Swin-Unet](https://github.com/HuCaoFighting/Swin-Unet)
