@@ -9,3 +9,12 @@
 * [TransUnet](https://github.com/Beckschen/TransUNet)
 * [SwinTransformer](https://github.com/microsoft/Swin-Transformer)
   
+## Citation
+
+```bibtex
+@article{alrfou2024gctx,
+  title={GCtx-UNet: Efficient Network for Medical Image Segmentation},
+  author={Alrfou, Khaled and Zhao, Tian},
+  journal={arXiv preprint arXiv:2406.05891},
+  year={2024}
+}
