@@ -1,4 +1,4 @@
-GCViT_Unet(
+GCtx_Unet(
   #params: 12.34M, #flops: 30.41G
   (model): GCViT(
     #params: 12.34M, #flops: 30.41G
