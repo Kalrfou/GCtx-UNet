@@ -11,7 +11,7 @@
 The datasets we used are provided by the authors of TransUnet. You can access the processed data through this [link](https://drive.google.com/drive/folders/1ACJEoTp-uqfFJ73qS3eUObQh52nGuzCd). For more details, please refer to the "./datasets/README.md" file. Alternatively, you can go ahead and request the preprocessed data by emailing jienengchen01@gmail.com. If you use the preprocessed data, please ensure it is solely for research purposes and do not redistribute it by TransUnet's License.
 
 ## Testing
-### Get pre-trained Mmdel weights on Synapse dataset:
+### Get pre-trained model weights on Synapse dataset:
 
 
 ## References
