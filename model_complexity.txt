@@ -1,0 +1,1633 @@
+GCtx_Unet(
+  #params: 12.34M, #flops: 30.41G
+  (model): GCViT(
+    #params: 12.34M, #flops: 30.41G
+    (patch_embed): PatchEmbed(
+      #params: 45.63K, #flops: 2.02G
+      (proj): Conv2d(
+        3, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1)
+        #params: 1.79K, #flops: 0.22G
+      )
+      (conv_down): ReduceSize(
+        #params: 43.84K, #flops: 1.8G
+        (conv): Sequential(
+          #params: 6.72K, #flops: 0.59G
+          (0): Conv2d(
+            64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False
+            #params: 0.58K, #flops: 72.25M
+          )
+          (1): GELU(approximate=none)
+          (2): SE(
+            #params: 2.05K, #flops: 8.05M
+            (avg_pool): AdaptiveAvgPool2d(
+              output_size=1
+              #params: 0, #flops: 8.03M
+            )
+            (fc): Sequential(
+              #params: 2.05K, #flops: 20.48K
+              (0): Linear(
+                in_features=64, out_features=16, bias=False
+                #params: 1.02K, #flops: 10.24K
+              )
+              (1): GELU(approximate=none)
+              (2): Linear(
+                in_features=16, out_features=64, bias=False
+                #params: 1.02K, #flops: 10.24K
+              )
+              (3): Sigmoid()
+            )
+          )
+          (3): Conv2d(
+            64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+            #params: 4.1K, #flops: 0.51G
+          )
+        )
+        (reduction): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False
+          #params: 36.86K, #flops: 1.16G
+        )
+        (norm2): LayerNorm(
+          (64,), eps=1e-05, elementwise_affine=True
+          #params: 0.13K, #flops: 10.04M
+        )
+        (norm1): LayerNorm(
+          (64,), eps=1e-05, elementwise_affine=True
+          #params: 0.13K, #flops: 40.14M
+        )
+      )
+    )
+    (pos_drop): Dropout(p=0.0, inplace=False)
+    (levels): ModuleList(
+      #params: 6.54M, #flops: 12.37G
+      (0): GCViTLayer(
+        #params: 0.18M, #flops: 3.81G
+        (blocks): ModuleList(
+          #params: 79.97K, #flops: 2.87G
+          (0): GCViTBlock(
+            #params: 42.07K, #flops: 1.5G
+            (norm1): LayerNorm(
+              (64,), eps=1e-05, elementwise_affine=True
+              #params: 0.13K, #flops: 10.04M
+            )
+            (attn): WindowAttention(
+              #params: 16.98K, #flops: 0.71G
+              (qkv): Linear(
+                in_features=64, out_features=192, bias=True
+                #params: 12.48K, #flops: 0.39G
+              )
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(
+                in_features=64, out_features=64, bias=True
+                #params: 4.16K, #flops: 0.13G
+              )
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Identity(#params: 0, #flops: N/A)
+            (norm2): LayerNorm(
+              (64,), eps=1e-05, elementwise_affine=True
+              #params: 0.13K, #flops: 10.04M
+            )
+            (mlp): Mlp(
+              #params: 24.83K, #flops: 0.77G
+              (fc1): Linear(
+                in_features=64, out_features=192, bias=True
+                #params: 12.48K, #flops: 0.39G
+              )
+              (act): GELU(approximate=none)
+              (fc2): Linear(
+                in_features=192, out_features=64, bias=True
+                #params: 12.35K, #flops: 0.39G
+              )
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): GCViTBlock(
+            #params: 37.91K, #flops: 1.37G
+            (norm1): LayerNorm(
+              (64,), eps=1e-05, elementwise_affine=True
+              #params: 0.13K, #flops: 10.04M
+            )
+            (attn): WindowAttentionGlobal(
+              #params: 12.82K, #flops: 0.58G
+              (qkv): Linear(
+                in_features=64, out_features=128, bias=True
+                #params: 8.32K, #flops: 0.26G
+              )
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(
+                in_features=64, out_features=64, bias=True
+                #params: 4.16K, #flops: 0.13G
+              )
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.033)
+            (norm2): LayerNorm(
+              (64,), eps=1e-05, elementwise_affine=True
+              #params: 0.13K, #flops: 10.04M
+            )
+            (mlp): Mlp(
+              #params: 24.83K, #flops: 0.77G
+              (fc1): Linear(
+                in_features=64, out_features=192, bias=True
+                #params: 12.48K, #flops: 0.39G
+              )
+              (act): GELU(approximate=none)
+              (fc2): Linear(
+                in_features=192, out_features=64, bias=True
+                #params: 12.35K, #flops: 0.39G
+              )
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (downsample): ReduceSize(
+          #params: 80.83K, #flops: 0.74G
+          (conv): Sequential(
+            #params: 6.72K, #flops: 0.15G
+            (0): Conv2d(
+              64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False
+              #params: 0.58K, #flops: 18.06M
+            )
+            (1): GELU(approximate=none)
+            (2): SE(
+              #params: 2.05K, #flops: 2.03M
+              (avg_pool): AdaptiveAvgPool2d(
+                output_size=1
+                #params: 0, #flops: 2.01M
+              )
+              (fc): Sequential(
+                #params: 2.05K, #flops: 20.48K
+                (0): Linear(
+                  in_features=64, out_features=16, bias=False
+                  #params: 1.02K, #flops: 10.24K
+                )
+                (1): GELU(approximate=none)
+                (2): Linear(
+                  in_features=16, out_features=64, bias=False
+                  #params: 1.02K, #flops: 10.24K
+                )
+                (3): Sigmoid()
+              )
+            )
+            (3): Conv2d(
+              64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+              #params: 4.1K, #flops: 0.13G
+            )
+          )
+          (reduction): Conv2d(
+            64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False
+            #params: 73.73K, #flops: 0.58G
+          )
+          (norm2): LayerNorm(
+            (128,), eps=1e-05, elementwise_affine=True
+            #params: 0.26K, #flops: 5.02M
+          )
+          (norm1): LayerNorm(
+            (64,), eps=1e-05, elementwise_affine=True
+            #params: 0.13K, #flops: 10.04M
+          )
+        )
+        (q_global_gen): GlobalQueryGen(
+          #params: 20.16K, #flops: 0.19G
+          (to_q_global): Sequential(
+            #params: 20.16K, #flops: 0.19G
+            (0): FeatExtract(
+              #params: 6.72K, #flops: 0.15G
+              (conv): Sequential(
+                #params: 6.72K, #flops: 0.15G
+                (0): Conv2d(
+                  64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False
+                  #params: 0.58K, #flops: 18.06M
+                )
+                (1): GELU(approximate=none)
+                (2): SE(
+                  #params: 2.05K, #flops: 2.03M
+                  (avg_pool): AdaptiveAvgPool2d(
+                    output_size=1
+                    #params: 0, #flops: 2.01M
+                  )
+                  (fc): Sequential(
+                    #params: 2.05K, #flops: 20.48K
+                    (0): Linear(
+                      in_features=64, out_features=16, bias=False
+                      #params: 1.02K, #flops: 10.24K
+                    )
+                    (1): GELU(approximate=none)
+                    (2): Linear(
+                      in_features=16, out_features=64, bias=False
+                      #params: 1.02K, #flops: 10.24K
+                    )
+                    (3): Sigmoid()
+                  )
+                )
+                (3): Conv2d(
+                  64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+                  #params: 4.1K, #flops: 0.13G
+                )
+              )
+              (pool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+            )
+            (1): FeatExtract(
+              #params: 6.72K, #flops: 37.15M
+              (conv): Sequential(
+                #params: 6.72K, #flops: 37.15M
+                (0): Conv2d(
+                  64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False
+                  #params: 0.58K, #flops: 4.52M
+                )
+                (1): GELU(approximate=none)
+                (2): SE(
+                  #params: 2.05K, #flops: 0.52M
+                  (avg_pool): AdaptiveAvgPool2d(
+                    output_size=1
+                    #params: 0, #flops: 0.5M
+                  )
+                  (fc): Sequential(
+                    #params: 2.05K, #flops: 20.48K
+                    (0): Linear(
+                      in_features=64, out_features=16, bias=False
+                      #params: 1.02K, #flops: 10.24K
+                    )
+                    (1): GELU(approximate=none)
+                    (2): Linear(
+                      in_features=16, out_features=64, bias=False
+                      #params: 1.02K, #flops: 10.24K
+                    )
+                    (3): Sigmoid()
+                  )
+                )
+                (3): Conv2d(
+                  64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+                  #params: 4.1K, #flops: 32.11M
+                )
+              )
+              (pool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+            )
+            (2): FeatExtract(
+              #params: 6.72K, #flops: 9.3M
+              (conv): Sequential(
+                #params: 6.72K, #flops: 9.3M
+                (0): Conv2d(
+                  64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False
+                  #params: 0.58K, #flops: 1.13M
+                )
+                (1): GELU(approximate=none)
+                (2): SE(
+                  #params: 2.05K, #flops: 0.15M
+                  (avg_pool): AdaptiveAvgPool2d(
+                    output_size=1
+                    #params: 0, #flops: 0.13M
+                  )
+                  (fc): Sequential(
+                    #params: 2.05K, #flops: 20.48K
+                    (0): Linear(
+                      in_features=64, out_features=16, bias=False
+                      #params: 1.02K, #flops: 10.24K
+                    )
+                    (1): GELU(approximate=none)
+                    (2): Linear(
+                      in_features=16, out_features=64, bias=False
+                      #params: 1.02K, #flops: 10.24K
+                    )
+                    (3): Sigmoid()
+                  )
+                )
+                (3): Conv2d(
+                  64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+                  #params: 4.1K, #flops: 8.03M
+                )
+              )
+              (pool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+            )
+          )
+        )
+      )
+      (1): GCViTLayer(
+        #params: 0.69M, #flops: 3.55G
+        (blocks): ModuleList(
+          #params: 0.32M, #flops: 2.66G
+          (0): GCViTBlock(
+            #params: 0.17M, #flops: 1.39G
+            (norm1): LayerNorm(
+              (128,), eps=1e-05, elementwise_affine=True
+              #params: 0.26K, #flops: 5.02M
+            )
+            (attn): WindowAttention(
+              #params: 66.72K, #flops: 0.61G
+              (qkv): Linear(
+                in_features=128, out_features=384, bias=True
+                #params: 49.54K, #flops: 0.39G
+              )
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(
+                in_features=128, out_features=128, bias=True
+                #params: 16.51K, #flops: 0.13G
+              )
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.067)
+            (norm2): LayerNorm(
+              (128,), eps=1e-05, elementwise_affine=True
+              #params: 0.26K, #flops: 5.02M
+            )
+            (mlp): Mlp(
+              #params: 98.82K, #flops: 0.77G
+              (fc1): Linear(
+                in_features=128, out_features=384, bias=True
+                #params: 49.54K, #flops: 0.39G
+              )
+              (act): GELU(approximate=none)
+              (fc2): Linear(
+                in_features=384, out_features=128, bias=True
+                #params: 49.28K, #flops: 0.39G
+              )
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): GCViTBlock(
+            #params: 0.15M, #flops: 1.26G
+            (norm1): LayerNorm(
+              (128,), eps=1e-05, elementwise_affine=True
+              #params: 0.26K, #flops: 5.02M
+            )
+            (attn): WindowAttentionGlobal(
+              #params: 50.21K, #flops: 0.48G
+              (qkv): Linear(
+                in_features=128, out_features=256, bias=True
+                #params: 33.02K, #flops: 0.26G
+              )
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(
+                in_features=128, out_features=128, bias=True
+                #params: 16.51K, #flops: 0.13G
+              )
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.100)
+            (norm2): LayerNorm(
+              (128,), eps=1e-05, elementwise_affine=True
+              #params: 0.26K, #flops: 5.02M
+            )
+            (mlp): Mlp(
+              #params: 98.82K, #flops: 0.77G
+              (fc1): Linear(
+                in_features=128, out_features=384, bias=True
+                #params: 49.54K, #flops: 0.39G
+              )
+              (act): GELU(approximate=none)
+              (fc2): Linear(
+                in_features=384, out_features=128, bias=True
+                #params: 49.28K, #flops: 0.39G
+              )
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (downsample): ReduceSize(
+          #params: 0.32M, #flops: 0.72G
+          (conv): Sequential(
+            #params: 25.73K, #flops: 0.14G
+            (0): Conv2d(
+              128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=128, bias=False
+              #params: 1.15K, #flops: 9.03M
+            )
+            (1): GELU(approximate=none)
+            (2): SE(
+              #params: 8.19K, #flops: 1.09M
+              (avg_pool): AdaptiveAvgPool2d(
+                output_size=1
+                #params: 0, #flops: 1M
+              )
+              (fc): Sequential(
+                #params: 8.19K, #flops: 81.92K
+                (0): Linear(
+                  in_features=128, out_features=32, bias=False
+                  #params: 4.1K, #flops: 40.96K
+                )
+                (1): GELU(approximate=none)
+                (2): Linear(
+                  in_features=32, out_features=128, bias=False
+                  #params: 4.1K, #flops: 40.96K
+                )
+                (3): Sigmoid()
+              )
+            )
+            (3): Conv2d(
+              128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False
+              #params: 16.38K, #flops: 0.13G
+            )
+          )
+          (reduction): Conv2d(
+            128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False
+            #params: 0.29M, #flops: 0.58G
+          )
+          (norm2): LayerNorm(
+            (256,), eps=1e-05, elementwise_affine=True
+            #params: 0.51K, #flops: 2.51M
+          )
+          (norm1): LayerNorm(
+            (128,), eps=1e-05, elementwise_affine=True
+            #params: 0.26K, #flops: 5.02M
+          )
+        )
+        (q_global_gen): GlobalQueryGen(
+          #params: 51.46K, #flops: 0.17G
+          (to_q_global): Sequential(
+            #params: 51.46K, #flops: 0.17G
+            (0): FeatExtract(
+              #params: 25.73K, #flops: 0.14G
+              (conv): Sequential(
+                #params: 25.73K, #flops: 0.14G
+                (0): Conv2d(
+                  128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=128, bias=False
+                  #params: 1.15K, #flops: 9.03M
+                )
+                (1): GELU(approximate=none)
+                (2): SE(
+                  #params: 8.19K, #flops: 1.09M
+                  (avg_pool): AdaptiveAvgPool2d(
+                    output_size=1
+                    #params: 0, #flops: 1M
+                  )
+                  (fc): Sequential(
+                    #params: 8.19K, #flops: 81.92K
+                    (0): Linear(
+                      in_features=128, out_features=32, bias=False
+                      #params: 4.1K, #flops: 40.96K
+                    )
+                    (1): GELU(approximate=none)
+                    (2): Linear(
+                      in_features=32, out_features=128, bias=False
+                      #params: 4.1K, #flops: 40.96K
+                    )
+                    (3): Sigmoid()
+                  )
+                )
+                (3): Conv2d(
+                  128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False
+                  #params: 16.38K, #flops: 0.13G
+                )
+              )
+              (pool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+            )
+            (1): FeatExtract(
+              #params: 25.73K, #flops: 34.7M
+              (conv): Sequential(
+                #params: 25.73K, #flops: 34.7M
+                (0): Conv2d(
+                  128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=128, bias=False
+                  #params: 1.15K, #flops: 2.26M
+                )
+                (1): GELU(approximate=none)
+                (2): SE(
+                  #params: 8.19K, #flops: 0.33M
+                  (avg_pool): AdaptiveAvgPool2d(
+                    output_size=1
+                    #params: 0, #flops: 0.25M
+                  )
+                  (fc): Sequential(
+                    #params: 8.19K, #flops: 81.92K
+                    (0): Linear(
+                      in_features=128, out_features=32, bias=False
+                      #params: 4.1K, #flops: 40.96K
+                    )
+                    (1): GELU(approximate=none)
+                    (2): Linear(
+                      in_features=32, out_features=128, bias=False
+                      #params: 4.1K, #flops: 40.96K
+                    )
+                    (3): Sigmoid()
+                  )
+                )
+                (3): Conv2d(
+                  128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False
+                  #params: 16.38K, #flops: 32.11M
+                )
+              )
+              (pool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+            )
+          )
+        )
+      )
+      (2): GCViTLayer(
+        #params: 2.65M, #flops: 3.69G
+        (blocks): ModuleList(
+          #params: 1.26M, #flops: 2.84G
+          (0): GCViTBlock(
+            #params: 0.66M, #flops: 1.49G
+            (norm1): LayerNorm(
+              (256,), eps=1e-05, elementwise_affine=True
+              #params: 0.51K, #flops: 2.51M
+            )
+            (attn): WindowAttention(
+              #params: 0.27M, #flops: 0.71G
+              (qkv): Linear(
+                in_features=256, out_features=768, bias=True
+                #params: 0.2M, #flops: 0.39G
+              )
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(
+                in_features=256, out_features=256, bias=True
+                #params: 65.79K, #flops: 0.13G
+              )
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.133)
+            (norm2): LayerNorm(
+              (256,), eps=1e-05, elementwise_affine=True
+              #params: 0.51K, #flops: 2.51M
+            )
+            (mlp): Mlp(
+              #params: 0.39M, #flops: 0.77G
+              (fc1): Linear(
+                in_features=256, out_features=768, bias=True
+                #params: 0.2M, #flops: 0.39G
+              )
+              (act): GELU(approximate=none)
+              (fc2): Linear(
+                in_features=768, out_features=256, bias=True
+                #params: 0.2M, #flops: 0.39G
+              )
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): GCViTBlock(
+            #params: 0.6M, #flops: 1.36G
+            (norm1): LayerNorm(
+              (256,), eps=1e-05, elementwise_affine=True
+              #params: 0.51K, #flops: 2.51M
+            )
+            (attn): WindowAttentionGlobal(
+              #params: 0.2M, #flops: 0.58G
+              (qkv): Linear(
+                in_features=256, out_features=512, bias=True
+                #params: 0.13M, #flops: 0.26G
+              )
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(
+                in_features=256, out_features=256, bias=True
+                #params: 65.79K, #flops: 0.13G
+              )
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.167)
+            (norm2): LayerNorm(
+              (256,), eps=1e-05, elementwise_affine=True
+              #params: 0.51K, #flops: 2.51M
+            )
+            (mlp): Mlp(
+              #params: 0.39M, #flops: 0.77G
+              (fc1): Linear(
+                in_features=256, out_features=768, bias=True
+                #params: 0.2M, #flops: 0.39G
+              )
+              (act): GELU(approximate=none)
+              (fc2): Linear(
+                in_features=768, out_features=256, bias=True
+                #params: 0.2M, #flops: 0.39G
+              )
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (downsample): ReduceSize(
+          #params: 1.28M, #flops: 0.72G
+          (conv): Sequential(
+            #params: 0.1M, #flops: 0.13G
+            (0): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256, bias=False
+              #params: 2.3K, #flops: 4.52M
+            )
+            (1): GELU(approximate=none)
+            (2): SE(
+              #params: 32.77K, #flops: 0.83M
+              (avg_pool): AdaptiveAvgPool2d(
+                output_size=1
+                #params: 0, #flops: 0.5M
+              )
+              (fc): Sequential(
+                #params: 32.77K, #flops: 0.33M
+                (0): Linear(
+                  in_features=256, out_features=64, bias=False
+                  #params: 16.38K, #flops: 0.16M
+                )
+                (1): GELU(approximate=none)
+                (2): Linear(
+                  in_features=64, out_features=256, bias=False
+                  #params: 16.38K, #flops: 0.16M
+                )
+                (3): Sigmoid()
+              )
+            )
+            (3): Conv2d(
+              256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              #params: 65.54K, #flops: 0.13G
+            )
+          )
+          (reduction): Conv2d(
+            256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False
+            #params: 1.18M, #flops: 0.58G
+          )
+          (norm2): LayerNorm(
+            (512,), eps=1e-05, elementwise_affine=True
+            #params: 1.02K, #flops: 1.25M
+          )
+          (norm1): LayerNorm(
+            (256,), eps=1e-05, elementwise_affine=True
+            #params: 0.51K, #flops: 2.51M
+          )
+        )
+        (q_global_gen): GlobalQueryGen(
+          #params: 0.1M, #flops: 0.13G
+          (to_q_global): Sequential(
+            #params: 0.1M, #flops: 0.13G
+            (0): FeatExtract(
+              #params: 0.1M, #flops: 0.13G
+              (conv): Sequential(
+                #params: 0.1M, #flops: 0.13G
+                (0): Conv2d(
+                  256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256, bias=False
+                  #params: 2.3K, #flops: 4.52M
+                )
+                (1): GELU(approximate=none)
+                (2): SE(
+                  #params: 32.77K, #flops: 0.83M
+                  (avg_pool): AdaptiveAvgPool2d(
+                    output_size=1
+                    #params: 0, #flops: 0.5M
+                  )
+                  (fc): Sequential(
+                    #params: 32.77K, #flops: 0.33M
+                    (0): Linear(
+                      in_features=256, out_features=64, bias=False
+                      #params: 16.38K, #flops: 0.16M
+                    )
+                    (1): GELU(approximate=none)
+                    (2): Linear(
+                      in_features=64, out_features=256, bias=False
+                      #params: 16.38K, #flops: 0.16M
+                    )
+                    (3): Sigmoid()
+                  )
+                )
+                (3): Conv2d(
+                  256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+                  #params: 65.54K, #flops: 0.13G
+                )
+              )
+            )
+          )
+        )
+      )
+      (3): GCViTLayer(
+        #params: 3.03M, #flops: 1.31G
+        (blocks): ModuleList(
+          #params: 2.63M, #flops: 1.31G
+          (0): GCViTBlock(
+            #params: 2.63M, #flops: 1.31G
+            (norm1): LayerNorm(
+              (512,), eps=1e-05, elementwise_affine=True
+              #params: 1.02K, #flops: 1.25M
+            )
+            (attn): WindowAttention(
+              #params: 1.05M, #flops: 0.54G
+              (qkv): Linear(
+                in_features=512, out_features=1536, bias=True
+                #params: 0.79M, #flops: 0.39G
+              )
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(
+                in_features=512, out_features=512, bias=True
+                #params: 0.26M, #flops: 0.13G
+              )
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.200)
+            (norm2): LayerNorm(
+              (512,), eps=1e-05, elementwise_affine=True
+              #params: 1.02K, #flops: 1.25M
+            )
+            (mlp): Mlp(
+              #params: 1.57M, #flops: 0.77G
+              (fc1): Linear(
+                in_features=512, out_features=1536, bias=True
+                #params: 0.79M, #flops: 0.39G
+              )
+              (act): GELU(approximate=none)
+              (fc2): Linear(
+                in_features=1536, out_features=512, bias=True
+                #params: 0.79M, #flops: 0.39G
+              )
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (q_global_gen): GlobalQueryGen(
+          #params: 0.4M, #flops: N/A
+          (to_q_global): Sequential(
+            #params: 0.4M, #flops: N/A
+            (0): FeatExtract(
+              #params: 0.4M, #flops: N/A
+              (conv): Sequential(
+                #params: 0.4M, #flops: N/A
+                (0): Conv2d(
+                  512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512, bias=False
+                  #params: 4.61K, #flops: N/A
+                )
+                (1): GELU(
+                  approximate=none
+                  #params: 0, #flops: N/A
+                )
+                (2): SE(
+                  #params: 0.13M, #flops: N/A
+                  (avg_pool): AdaptiveAvgPool2d(
+                    output_size=1
+                    #params: 0, #flops: N/A
+                  )
+                  (fc): Sequential(
+                    #params: 0.13M, #flops: N/A
+                    (0): Linear(
+                      in_features=512, out_features=128, bias=False
+                      #params: 65.54K, #flops: N/A
+                    )
+                    (1): GELU(
+                      approximate=none
+                      #params: 0, #flops: N/A
+                    )
+                    (2): Linear(
+                      in_features=128, out_features=512, bias=False
+                      #params: 65.54K, #flops: N/A
+                    )
+                    (3): Sigmoid(#params: 0, #flops: N/A)
+                  )
+                )
+                (3): Conv2d(
+                  512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False
+                  #params: 0.26M, #flops: N/A
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+    (layers_up): ModuleList(
+      #params: 5.56M, #flops: 11.39G
+      (0): Up_GCViTLayer(
+        #params: 3.56M, #flops: 1.7G
+        (blocks): ModuleList(
+          #params: 2.63M, #flops: 1.31G
+          (0): GCViTBlock(
+            #params: 2.63M, #flops: 1.31G
+            (norm1): LayerNorm(
+              (512,), eps=1e-05, elementwise_affine=True
+              #params: 1.02K, #flops: 1.25M
+            )
+            (attn): WindowAttention(
+              #params: 1.05M, #flops: 0.54G
+              (qkv): Linear(
+                in_features=512, out_features=1536, bias=True
+                #params: 0.79M, #flops: 0.39G
+              )
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(
+                in_features=512, out_features=512, bias=True
+                #params: 0.26M, #flops: 0.13G
+              )
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.200)
+            (norm2): LayerNorm(
+              (512,), eps=1e-05, elementwise_affine=True
+              #params: 1.02K, #flops: 1.25M
+            )
+            (mlp): Mlp(
+              #params: 1.57M, #flops: 0.77G
+              (fc1): Linear(
+                in_features=512, out_features=1536, bias=True
+                #params: 0.79M, #flops: 0.39G
+              )
+              (act): GELU(approximate=none)
+              (fc2): Linear(
+                in_features=1536, out_features=512, bias=True
+                #params: 0.79M, #flops: 0.39G
+              )
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (upsample): UpSize(
+          #params: 0.53M, #flops: 0.39G
+          (conv): Sequential(
+            #params: 0.4M, #flops: 0.13G
+            (0): Conv2d(
+              512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512, bias=False
+              #params: 4.61K, #flops: 2.26M
+            )
+            (1): GELU(approximate=none)
+            (2): SE(
+              #params: 0.13M, #flops: 1.56M
+              (avg_pool): AdaptiveAvgPool2d(
+                output_size=1
+                #params: 0, #flops: 0.25M
+              )
+              (fc): Sequential(
+                #params: 0.13M, #flops: 1.31M
+                (0): Linear(
+                  in_features=512, out_features=128, bias=False
+                  #params: 65.54K, #flops: 0.66M
+                )
+                (1): GELU(approximate=none)
+                (2): Linear(
+                  in_features=128, out_features=512, bias=False
+                  #params: 65.54K, #flops: 0.66M
+                )
+                (3): Sigmoid()
+              )
+            )
+            (3): Conv2d(
+              512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False
+              #params: 0.26M, #flops: 0.13G
+            )
+          )
+          (upsample): Upsample(scale_factor=2.0, mode=bicubic)
+          (expansion): Conv2d(
+            512, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+            #params: 0.13M, #flops: 0.26G
+          )
+          (norm1): LayerNorm(
+            (512,), eps=1e-05, elementwise_affine=True
+            #params: 1.02K, #flops: 1.25M
+          )
+          (norm2): LayerNorm(
+            (256,), eps=1e-05, elementwise_affine=True
+            #params: 0.51K, #flops: 2.51M
+          )
+        )
+        (q_global_gen): GlobalQueryGen(
+          #params: 0.4M, #flops: N/A
+          (to_q_global): Sequential(
+            #params: 0.4M, #flops: N/A
+            (0): FeatExtract(
+              #params: 0.4M, #flops: N/A
+              (conv): Sequential(
+                #params: 0.4M, #flops: N/A
+                (0): Conv2d(
+                  512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512, bias=False
+                  #params: 4.61K, #flops: N/A
+                )
+                (1): GELU(
+                  approximate=none
+                  #params: 0, #flops: N/A
+                )
+                (2): SE(
+                  #params: 0.13M, #flops: N/A
+                  (avg_pool): AdaptiveAvgPool2d(
+                    output_size=1
+                    #params: 0, #flops: N/A
+                  )
+                  (fc): Sequential(
+                    #params: 0.13M, #flops: N/A
+                    (0): Linear(
+                      in_features=512, out_features=128, bias=False
+                      #params: 65.54K, #flops: N/A
+                    )
+                    (1): GELU(
+                      approximate=none
+                      #params: 0, #flops: N/A
+                    )
+                    (2): Linear(
+                      in_features=128, out_features=512, bias=False
+                      #params: 65.54K, #flops: N/A
+                    )
+                    (3): Sigmoid(#params: 0, #flops: N/A)
+                  )
+                )
+                (3): Conv2d(
+                  512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False
+                  #params: 0.26M, #flops: N/A
+                )
+              )
+            )
+          )
+        )
+      )
+      (1): Up_GCViTLayer(
+        #params: 1.5M, #flops: 3.38G
+        (blocks): ModuleList(
+          #params: 1.26M, #flops: 2.84G
+          (0): GCViTBlock(
+            #params: 0.66M, #flops: 1.49G
+            (norm1): LayerNorm(
+              (256,), eps=1e-05, elementwise_affine=True
+              #params: 0.51K, #flops: 2.51M
+            )
+            (attn): WindowAttention(
+              #params: 0.27M, #flops: 0.71G
+              (qkv): Linear(
+                in_features=256, out_features=768, bias=True
+                #params: 0.2M, #flops: 0.39G
+              )
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(
+                in_features=256, out_features=256, bias=True
+                #params: 65.79K, #flops: 0.13G
+              )
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.133)
+            (norm2): LayerNorm(
+              (256,), eps=1e-05, elementwise_affine=True
+              #params: 0.51K, #flops: 2.51M
+            )
+            (mlp): Mlp(
+              #params: 0.39M, #flops: 0.77G
+              (fc1): Linear(
+                in_features=256, out_features=768, bias=True
+                #params: 0.2M, #flops: 0.39G
+              )
+              (act): GELU(approximate=none)
+              (fc2): Linear(
+                in_features=768, out_features=256, bias=True
+                #params: 0.2M, #flops: 0.39G
+              )
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): GCViTBlock(
+            #params: 0.6M, #flops: 1.36G
+            (norm1): LayerNorm(
+              (256,), eps=1e-05, elementwise_affine=True
+              #params: 0.51K, #flops: 2.51M
+            )
+            (attn): WindowAttentionGlobal(
+              #params: 0.2M, #flops: 0.58G
+              (qkv): Linear(
+                in_features=256, out_features=512, bias=True
+                #params: 0.13M, #flops: 0.26G
+              )
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(
+                in_features=256, out_features=256, bias=True
+                #params: 65.79K, #flops: 0.13G
+              )
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.167)
+            (norm2): LayerNorm(
+              (256,), eps=1e-05, elementwise_affine=True
+              #params: 0.51K, #flops: 2.51M
+            )
+            (mlp): Mlp(
+              #params: 0.39M, #flops: 0.77G
+              (fc1): Linear(
+                in_features=256, out_features=768, bias=True
+                #params: 0.2M, #flops: 0.39G
+              )
+              (act): GELU(approximate=none)
+              (fc2): Linear(
+                in_features=768, out_features=256, bias=True
+                #params: 0.2M, #flops: 0.39G
+              )
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (upsample): UpSize(
+          #params: 0.13M, #flops: 0.4G
+          (conv): Sequential(
+            #params: 0.1M, #flops: 0.13G
+            (0): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256, bias=False
+              #params: 2.3K, #flops: 4.52M
+            )
+            (1): GELU(approximate=none)
+            (2): SE(
+              #params: 32.77K, #flops: 0.83M
+              (avg_pool): AdaptiveAvgPool2d(
+                output_size=1
+                #params: 0, #flops: 0.5M
+              )
+              (fc): Sequential(
+                #params: 32.77K, #flops: 0.33M
+                (0): Linear(
+                  in_features=256, out_features=64, bias=False
+                  #params: 16.38K, #flops: 0.16M
+                )
+                (1): GELU(approximate=none)
+                (2): Linear(
+                  in_features=64, out_features=256, bias=False
+                  #params: 16.38K, #flops: 0.16M
+                )
+                (3): Sigmoid()
+              )
+            )
+            (3): Conv2d(
+              256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              #params: 65.54K, #flops: 0.13G
+            )
+          )
+          (upsample): Upsample(scale_factor=2.0, mode=bicubic)
+          (expansion): Conv2d(
+            256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False
+            #params: 32.77K, #flops: 0.26G
+          )
+          (norm1): LayerNorm(
+            (256,), eps=1e-05, elementwise_affine=True
+            #params: 0.51K, #flops: 2.51M
+          )
+          (norm2): LayerNorm(
+            (128,), eps=1e-05, elementwise_affine=True
+            #params: 0.26K, #flops: 5.02M
+          )
+        )
+        (q_global_gen): GlobalQueryGen(
+          #params: 0.1M, #flops: 0.13G
+          (to_q_global): Sequential(
+            #params: 0.1M, #flops: 0.13G
+            (0): FeatExtract(
+              #params: 0.1M, #flops: 0.13G
+              (conv): Sequential(
+                #params: 0.1M, #flops: 0.13G
+                (0): Conv2d(
+                  256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256, bias=False
+                  #params: 2.3K, #flops: 4.52M
+                )
+                (1): GELU(approximate=none)
+                (2): SE(
+                  #params: 32.77K, #flops: 0.83M
+                  (avg_pool): AdaptiveAvgPool2d(
+                    output_size=1
+                    #params: 0, #flops: 0.5M
+                  )
+                  (fc): Sequential(
+                    #params: 32.77K, #flops: 0.33M
+                    (0): Linear(
+                      in_features=256, out_features=64, bias=False
+                      #params: 16.38K, #flops: 0.16M
+                    )
+                    (1): GELU(approximate=none)
+                    (2): Linear(
+                      in_features=64, out_features=256, bias=False
+                      #params: 16.38K, #flops: 0.16M
+                    )
+                    (3): Sigmoid()
+                  )
+                )
+                (3): Conv2d(
+                  256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+                  #params: 65.54K, #flops: 0.13G
+                )
+              )
+            )
+          )
+        )
+      )
+      (2): Up_GCViTLayer(
+        #params: 0.4M, #flops: 3.24G
+        (blocks): ModuleList(
+          #params: 0.32M, #flops: 2.66G
+          (0): GCViTBlock(
+            #params: 0.17M, #flops: 1.39G
+            (norm1): LayerNorm(
+              (128,), eps=1e-05, elementwise_affine=True
+              #params: 0.26K, #flops: 5.02M
+            )
+            (attn): WindowAttention(
+              #params: 66.72K, #flops: 0.61G
+              (qkv): Linear(
+                in_features=128, out_features=384, bias=True
+                #params: 49.54K, #flops: 0.39G
+              )
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(
+                in_features=128, out_features=128, bias=True
+                #params: 16.51K, #flops: 0.13G
+              )
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.067)
+            (norm2): LayerNorm(
+              (128,), eps=1e-05, elementwise_affine=True
+              #params: 0.26K, #flops: 5.02M
+            )
+            (mlp): Mlp(
+              #params: 98.82K, #flops: 0.77G
+              (fc1): Linear(
+                in_features=128, out_features=384, bias=True
+                #params: 49.54K, #flops: 0.39G
+              )
+              (act): GELU(approximate=none)
+              (fc2): Linear(
+                in_features=384, out_features=128, bias=True
+                #params: 49.28K, #flops: 0.39G
+              )
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): GCViTBlock(
+            #params: 0.15M, #flops: 1.26G
+            (norm1): LayerNorm(
+              (128,), eps=1e-05, elementwise_affine=True
+              #params: 0.26K, #flops: 5.02M
+            )
+            (attn): WindowAttentionGlobal(
+              #params: 50.21K, #flops: 0.48G
+              (qkv): Linear(
+                in_features=128, out_features=256, bias=True
+                #params: 33.02K, #flops: 0.26G
+              )
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(
+                in_features=128, out_features=128, bias=True
+                #params: 16.51K, #flops: 0.13G
+              )
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.100)
+            (norm2): LayerNorm(
+              (128,), eps=1e-05, elementwise_affine=True
+              #params: 0.26K, #flops: 5.02M
+            )
+            (mlp): Mlp(
+              #params: 98.82K, #flops: 0.77G
+              (fc1): Linear(
+                in_features=128, out_features=384, bias=True
+                #params: 49.54K, #flops: 0.39G
+              )
+              (act): GELU(approximate=none)
+              (fc2): Linear(
+                in_features=384, out_features=128, bias=True
+                #params: 49.28K, #flops: 0.39G
+              )
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (upsample): UpSize(
+          #params: 34.3K, #flops: 0.41G
+          (conv): Sequential(
+            #params: 25.73K, #flops: 0.14G
+            (0): Conv2d(
+              128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=128, bias=False
+              #params: 1.15K, #flops: 9.03M
+            )
+            (1): GELU(approximate=none)
+            (2): SE(
+              #params: 8.19K, #flops: 1.09M
+              (avg_pool): AdaptiveAvgPool2d(
+                output_size=1
+                #params: 0, #flops: 1M
+              )
+              (fc): Sequential(
+                #params: 8.19K, #flops: 81.92K
+                (0): Linear(
+                  in_features=128, out_features=32, bias=False
+                  #params: 4.1K, #flops: 40.96K
+                )
+                (1): GELU(approximate=none)
+                (2): Linear(
+                  in_features=32, out_features=128, bias=False
+                  #params: 4.1K, #flops: 40.96K
+                )
+                (3): Sigmoid()
+              )
+            )
+            (3): Conv2d(
+              128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False
+              #params: 16.38K, #flops: 0.13G
+            )
+          )
+          (upsample): Upsample(scale_factor=2.0, mode=bicubic)
+          (expansion): Conv2d(
+            128, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+            #params: 8.19K, #flops: 0.26G
+          )
+          (norm1): LayerNorm(
+            (128,), eps=1e-05, elementwise_affine=True
+            #params: 0.26K, #flops: 5.02M
+          )
+          (norm2): LayerNorm(
+            (64,), eps=1e-05, elementwise_affine=True
+            #params: 0.13K, #flops: 10.04M
+          )
+        )
+        (q_global_gen): GlobalQueryGen(
+          #params: 51.46K, #flops: 0.17G
+          (to_q_global): Sequential(
+            #params: 51.46K, #flops: 0.17G
+            (0): FeatExtract(
+              #params: 25.73K, #flops: 0.14G
+              (conv): Sequential(
+                #params: 25.73K, #flops: 0.14G
+                (0): Conv2d(
+                  128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=128, bias=False
+                  #params: 1.15K, #flops: 9.03M
+                )
+                (1): GELU(approximate=none)
+                (2): SE(
+                  #params: 8.19K, #flops: 1.09M
+                  (avg_pool): AdaptiveAvgPool2d(
+                    output_size=1
+                    #params: 0, #flops: 1M
+                  )
+                  (fc): Sequential(
+                    #params: 8.19K, #flops: 81.92K
+                    (0): Linear(
+                      in_features=128, out_features=32, bias=False
+                      #params: 4.1K, #flops: 40.96K
+                    )
+                    (1): GELU(approximate=none)
+                    (2): Linear(
+                      in_features=32, out_features=128, bias=False
+                      #params: 4.1K, #flops: 40.96K
+                    )
+                    (3): Sigmoid()
+                  )
+                )
+                (3): Conv2d(
+                  128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False
+                  #params: 16.38K, #flops: 0.13G
+                )
+              )
+              (pool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+            )
+            (1): FeatExtract(
+              #params: 25.73K, #flops: 34.7M
+              (conv): Sequential(
+                #params: 25.73K, #flops: 34.7M
+                (0): Conv2d(
+                  128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=128, bias=False
+                  #params: 1.15K, #flops: 2.26M
+                )
+                (1): GELU(approximate=none)
+                (2): SE(
+                  #params: 8.19K, #flops: 0.33M
+                  (avg_pool): AdaptiveAvgPool2d(
+                    output_size=1
+                    #params: 0, #flops: 0.25M
+                  )
+                  (fc): Sequential(
+                    #params: 8.19K, #flops: 81.92K
+                    (0): Linear(
+                      in_features=128, out_features=32, bias=False
+                      #params: 4.1K, #flops: 40.96K
+                    )
+                    (1): GELU(approximate=none)
+                    (2): Linear(
+                      in_features=32, out_features=128, bias=False
+                      #params: 4.1K, #flops: 40.96K
+                    )
+                    (3): Sigmoid()
+                  )
+                )
+                (3): Conv2d(
+                  128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False
+                  #params: 16.38K, #flops: 32.11M
+                )
+              )
+              (pool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+            )
+          )
+        )
+      )
+      (3): Up_GCViTLayer(
+        #params: 0.1M, #flops: 3.07G
+        (blocks): ModuleList(
+          #params: 79.97K, #flops: 2.87G
+          (0): GCViTBlock(
+            #params: 42.07K, #flops: 1.5G
+            (norm1): LayerNorm(
+              (64,), eps=1e-05, elementwise_affine=True
+              #params: 0.13K, #flops: 10.04M
+            )
+            (attn): WindowAttention(
+              #params: 16.98K, #flops: 0.71G
+              (qkv): Linear(
+                in_features=64, out_features=192, bias=True
+                #params: 12.48K, #flops: 0.39G
+              )
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(
+                in_features=64, out_features=64, bias=True
+                #params: 4.16K, #flops: 0.13G
+              )
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Identity(#params: 0, #flops: N/A)
+            (norm2): LayerNorm(
+              (64,), eps=1e-05, elementwise_affine=True
+              #params: 0.13K, #flops: 10.04M
+            )
+            (mlp): Mlp(
+              #params: 24.83K, #flops: 0.77G
+              (fc1): Linear(
+                in_features=64, out_features=192, bias=True
+                #params: 12.48K, #flops: 0.39G
+              )
+              (act): GELU(approximate=none)
+              (fc2): Linear(
+                in_features=192, out_features=64, bias=True
+                #params: 12.35K, #flops: 0.39G
+              )
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): GCViTBlock(
+            #params: 37.91K, #flops: 1.37G
+            (norm1): LayerNorm(
+              (64,), eps=1e-05, elementwise_affine=True
+              #params: 0.13K, #flops: 10.04M
+            )
+            (attn): WindowAttentionGlobal(
+              #params: 12.82K, #flops: 0.58G
+              (qkv): Linear(
+                in_features=64, out_features=128, bias=True
+                #params: 8.32K, #flops: 0.26G
+              )
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(
+                in_features=64, out_features=64, bias=True
+                #params: 4.16K, #flops: 0.13G
+              )
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.033)
+            (norm2): LayerNorm(
+              (64,), eps=1e-05, elementwise_affine=True
+              #params: 0.13K, #flops: 10.04M
+            )
+            (mlp): Mlp(
+              #params: 24.83K, #flops: 0.77G
+              (fc1): Linear(
+                in_features=64, out_features=192, bias=True
+                #params: 12.48K, #flops: 0.39G
+              )
+              (act): GELU(approximate=none)
+              (fc2): Linear(
+                in_features=192, out_features=64, bias=True
+                #params: 12.35K, #flops: 0.39G
+              )
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (q_global_gen): GlobalQueryGen(
+          #params: 20.16K, #flops: 0.19G
+          (to_q_global): Sequential(
+            #params: 20.16K, #flops: 0.19G
+            (0): FeatExtract(
+              #params: 6.72K, #flops: 0.15G
+              (conv): Sequential(
+                #params: 6.72K, #flops: 0.15G
+                (0): Conv2d(
+                  64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False
+                  #params: 0.58K, #flops: 18.06M
+                )
+                (1): GELU(approximate=none)
+                (2): SE(
+                  #params: 2.05K, #flops: 2.03M
+                  (avg_pool): AdaptiveAvgPool2d(
+                    output_size=1
+                    #params: 0, #flops: 2.01M
+                  )
+                  (fc): Sequential(
+                    #params: 2.05K, #flops: 20.48K
+                    (0): Linear(
+                      in_features=64, out_features=16, bias=False
+                      #params: 1.02K, #flops: 10.24K
+                    )
+                    (1): GELU(approximate=none)
+                    (2): Linear(
+                      in_features=16, out_features=64, bias=False
+                      #params: 1.02K, #flops: 10.24K
+                    )
+                    (3): Sigmoid()
+                  )
+                )
+                (3): Conv2d(
+                  64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+                  #params: 4.1K, #flops: 0.13G
+                )
+              )
+              (pool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+            )
+            (1): FeatExtract(
+              #params: 6.72K, #flops: 37.15M
+              (conv): Sequential(
+                #params: 6.72K, #flops: 37.15M
+                (0): Conv2d(
+                  64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False
+                  #params: 0.58K, #flops: 4.52M
+                )
+                (1): GELU(approximate=none)
+                (2): SE(
+                  #params: 2.05K, #flops: 0.52M
+                  (avg_pool): AdaptiveAvgPool2d(
+                    output_size=1
+                    #params: 0, #flops: 0.5M
+                  )
+                  (fc): Sequential(
+                    #params: 2.05K, #flops: 20.48K
+                    (0): Linear(
+                      in_features=64, out_features=16, bias=False
+                      #params: 1.02K, #flops: 10.24K
+                    )
+                    (1): GELU(approximate=none)
+                    (2): Linear(
+                      in_features=16, out_features=64, bias=False
+                      #params: 1.02K, #flops: 10.24K
+                    )
+                    (3): Sigmoid()
+                  )
+                )
+                (3): Conv2d(
+                  64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+                  #params: 4.1K, #flops: 32.11M
+                )
+              )
+              (pool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+            )
+            (2): FeatExtract(
+              #params: 6.72K, #flops: 9.3M
+              (conv): Sequential(
+                #params: 6.72K, #flops: 9.3M
+                (0): Conv2d(
+                  64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False
+                  #params: 0.58K, #flops: 1.13M
+                )
+                (1): GELU(approximate=none)
+                (2): SE(
+                  #params: 2.05K, #flops: 0.15M
+                  (avg_pool): AdaptiveAvgPool2d(
+                    output_size=1
+                    #params: 0, #flops: 0.13M
+                  )
+                  (fc): Sequential(
+                    #params: 2.05K, #flops: 20.48K
+                    (0): Linear(
+                      in_features=64, out_features=16, bias=False
+                      #params: 1.02K, #flops: 10.24K
+                    )
+                    (1): GELU(approximate=none)
+                    (2): Linear(
+                      in_features=16, out_features=64, bias=False
+                      #params: 1.02K, #flops: 10.24K
+                    )
+                    (3): Sigmoid()
+                  )
+                )
+                (3): Conv2d(
+                  64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+                  #params: 4.1K, #flops: 8.03M
+                )
+              )
+              (pool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+            )
+          )
+        )
+      )
+    )
+    (concat_back_dim): ModuleList(
+      #params: 0.17M, #flops: 0.77G
+      (0): Identity(#params: 0, #flops: N/A)
+      (1): Linear(
+        in_features=512, out_features=256, bias=True
+        #params: 0.13M, #flops: 0.26G
+      )
+      (2): Linear(
+        in_features=256, out_features=128, bias=True
+        #params: 32.9K, #flops: 0.26G
+      )
+      (3): Linear(
+        in_features=128, out_features=64, bias=True
+        #params: 8.26K, #flops: 0.26G
+      )
+    )
+    (norm): LayerNorm(
+      (512,), eps=1e-05, elementwise_affine=True
+      #params: 1.02K, #flops: 1.25M
+    )
+    (norm_up): LayerNorm(
+      (64,), eps=1e-05, elementwise_affine=True
+      #params: 0.13K, #flops: 10.04M
+    )
+    (up): PatchUnembed(
+      #params: 22.14K, #flops: 3.56G
+      (conv_up): UpSize(
+        #params: 11.07K, #flops: 0.71G
+        (conv): Sequential(
+          #params: 6.72K, #flops: 0.15G
+          (0): Conv2d(
+            64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False
+            #params: 0.58K, #flops: 18.06M
+          )
+          (1): GELU(approximate=none)
+          (2): SE(
+            #params: 2.05K, #flops: 2.03M
+            (avg_pool): AdaptiveAvgPool2d(
+              output_size=1
+              #params: 0, #flops: 2.01M
+            )
+            (fc): Sequential(
+              #params: 2.05K, #flops: 20.48K
+              (0): Linear(
+                in_features=64, out_features=16, bias=False
+                #params: 1.02K, #flops: 10.24K
+              )
+              (1): GELU(approximate=none)
+              (2): Linear(
+                in_features=16, out_features=64, bias=False
+                #params: 1.02K, #flops: 10.24K
+              )
+              (3): Sigmoid()
+            )
+          )
+          (3): Conv2d(
+            64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+            #params: 4.1K, #flops: 0.13G
+          )
+        )
+        (upsample): Upsample(scale_factor=2.0, mode=bicubic)
+        (expansion): Conv2d(
+          64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+          #params: 4.1K, #flops: 0.51G
+        )
+        (norm1): LayerNorm(
+          (64,), eps=1e-05, elementwise_affine=True
+          #params: 0.13K, #flops: 10.04M
+        )
+        (norm2): LayerNorm(
+          (64,), eps=1e-05, elementwise_affine=True
+          #params: 0.13K, #flops: 40.14M
+        )
+      )
+      (conv_up2): UpSize(
+        #params: 11.07K, #flops: 2.85G
+        (conv): Sequential(
+          #params: 6.72K, #flops: 0.59G
+          (0): Conv2d(
+            64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False
+            #params: 0.58K, #flops: 72.25M
+          )
+          (1): GELU(approximate=none)
+          (2): SE(
+            #params: 2.05K, #flops: 8.05M
+            (avg_pool): AdaptiveAvgPool2d(
+              output_size=1
+              #params: 0, #flops: 8.03M
+            )
+            (fc): Sequential(
+              #params: 2.05K, #flops: 20.48K
+              (0): Linear(
+                in_features=64, out_features=16, bias=False
+                #params: 1.02K, #flops: 10.24K
+              )
+              (1): GELU(approximate=none)
+              (2): Linear(
+                in_features=16, out_features=64, bias=False
+                #params: 1.02K, #flops: 10.24K
+              )
+              (3): Sigmoid()
+            )
+          )
+          (3): Conv2d(
+            64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+            #params: 4.1K, #flops: 0.51G
+          )
+        )
+        (upsample): Upsample(scale_factor=2.0, mode=bicubic)
+        (expansion): Conv2d(
+          64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+          #params: 4.1K, #flops: 2.06G
+        )
+        (norm1): LayerNorm(
+          (64,), eps=1e-05, elementwise_affine=True
+          #params: 0.13K, #flops: 40.14M
+        )
+        (norm2): LayerNorm(
+          (64,), eps=1e-05, elementwise_affine=True
+          #params: 0.13K, #flops: 0.16G
+        )
+      )
+    )
+    (output): Conv2d(
+      64, 9, kernel_size=(1, 1), stride=(1, 1), bias=False
+      #params: 0.58K, #flops: 0.29G
+    )
+  )
+)
