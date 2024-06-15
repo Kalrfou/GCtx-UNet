@@ -5,7 +5,7 @@
 ##### The code will be published soon.
 
 ## References
-*[Swin-Unet](https://github.com/HuCaoFighting/Swin-Unet)
+* [Swin-Unet](https://github.com/HuCaoFighting/Swin-Unet)
 * [TransUnet](https://github.com/Beckschen/TransUNet)
 * [SwinTransformer](https://github.com/microsoft/Swin-Transformer)
   
