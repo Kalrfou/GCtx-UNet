@@ -9,7 +9,7 @@ import torch.backends.cudnn as cudnn
 from networks.GCtx_UNet import GCViT_Unet as ViT_seg
 from trainer import trainer_synapse
 from config import get_config
-from fvcore.nn import FlopCountAnalysis,flop_count,flop_count_str
+#from fvcore.nn import FlopCountAnalysis,flop_count,flop_count_str
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--root_path', type=str,
@@ -97,9 +97,9 @@ if __name__ == "__main__":
     if not os.path.exists(args.output_dir):
         os.makedirs(args.output_dir)
     net = ViT_seg(config,img_size=args.img_size, num_classes=args.num_classes).cuda()
-    inputs = (torch.randn((10,3,224,224)).cuda(),)
-    with open('model_complexity.txt', 'w') as output:
-         output.write(flop_count_str(FlopCountAnalysis(net, inputs)))
+    #inputs = (torch.randn((10,3,224,224)).cuda(),)
+    #with open('model_complexity.txt', 'w') as output:
+         #output.write(flop_count_str(FlopCountAnalysis(net, inputs)))
     net.load_from(config)
 
     trainer = {'Synapse': trainer_synapse,}
