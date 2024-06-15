@@ -3,7 +3,7 @@
 #### GCtx-UNet is a U-shaped network architecture that incorporates the Global Context Vision Transformer (GC-ViT) to enhance medical image segmentation by effectively capturing both global and local features. Feel free to check out our preprint on [arXiv](https://arxiv.org/pdf/2406.05891). &#8291;
 
 
-##### The code will be published soon.
+##### The complete code will be published soon.
 
 ## References
 * [Swin-Unet](https://github.com/HuCaoFighting/Swin-Unet)
