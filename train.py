@@ -9,7 +9,6 @@ import torch.backends.cudnn as cudnn
 from networks.GCtx_UNet import GCViT_Unet as ViT_seg
 from trainer import trainer_synapse
 from config import get_config
-from utils import DiceBCELoss
 from fvcore.nn import FlopCountAnalysis,flop_count,flop_count_str
 
 parser = argparse.ArgumentParser()
