@@ -7,7 +7,7 @@
 #### 2.  Download pre-trained GC-ViT transformer model (GCViT-xxtiny) pre-trained on MedNet: 
 
 ##  Prepare data
-The datasets we used are provided by the authors of TransUnet. You can access the processed data through this [link](https://drive.google.com/drive/folders/1ACJEoTp-uqfFJ73qS3eUObQh52nGuzCd). For more details, please refer to the "./datasets/README.md" file. Alternatively, you can go ahead and request the preprocessed data by emailing jienengchen01@gmail.com. If you use the preprocessed data, please ensure it is solely for research purposes and do not redistribute it by TransUnet's License.
+The Synapse and ACDC datasets we used are provided by the authors of TransUnet. You can access the processed data through this [link](https://drive.google.com/drive/folders/1ACJEoTp-uqfFJ73qS3eUObQh52nGuzCd). For more details, please refer to the "./datasets/README.md" file. Alternatively, you can go ahead and request the preprocessed data by emailing jienengchen01@gmail.com. If you use the preprocessed data, please ensure it is solely for research purposes and do not redistribute it by TransUnet's License.
 ##  Environment
 - Please prepare an environment with python=3.8, and then use the command "pip install -r requirements.txt" for the dependencies.
 
