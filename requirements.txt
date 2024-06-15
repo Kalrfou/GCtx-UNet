@@ -6,3 +6,11 @@ termcolor==1.1.0
 tensorboardX==2.5
 opencv-python==4.7.0
 yacs==0.1.8
+numpy
+tqdm
+ml-collections
+medpy
+SimpleITK
+scipy
+h5py
+einops
