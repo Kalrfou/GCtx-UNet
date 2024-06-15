@@ -841,7 +841,7 @@ class GCViT(nn.Module):
         self.pos_drop = nn.Dropout(p=drop_rate)
         self.final_upsample = final_upsample
         dpr = [x.item() for x in torch.linspace(0, drop_path_rate, sum(depths))]
-        depths=[2, 2, 2, 1]
+        depths=depths#[2, 2, 2, 1]
         self.levels = nn.ModuleList()
         self.num_layers=len(depths)
         for i in range(self.num_layers):
@@ -864,7 +864,7 @@ class GCViT(nn.Module):
          # build decoder layers
         self.layers_up = nn.ModuleList()
         self.concat_back_dim = nn.ModuleList()
-        depths2=[2, 2, 2, 1]#[3, 4, 19, 5]
+        depths2=depths#[2, 2, 2, 1]#[3, 4, 19, 5]
         for i_layer in range(self.num_layers):
             concat_linear = nn.Linear(2*int(dim*2**(self.num_layers-1-i_layer)),
                                         int(dim*2**(self.num_layers-1-i_layer))) if i_layer > 0 else nn.Identity()
