@@ -1,4 +1,3 @@
-N/A indicates a possibly missing statistic due to how the module was called. Missing values are still included in the parent's total.
 GCViT_Unet(
   #params: 12.34M, #flops: 30.41G
   (model): GCViT(
