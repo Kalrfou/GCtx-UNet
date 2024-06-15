@@ -4,7 +4,7 @@
 ##### The complete code will be published soon.
 ## Pre-trained model:
 ###  Download pre-trained GC-ViT transformer model (GCViT-xxtiny) pre-trained on ImageNet1K
-* [Get pre-trained model in this link] (https://drive.usercontent.google.com/download?id=1apSIWQCa5VhWLJws8ugMTuyKzyayw4Eh&export=download&authuser=0): Put pretrained xx-Tiny into folder "pretrained_ckpt/"
+### 1. [Get pre-trained model in this link] (https://drive.usercontent.google.com/download?id=1apSIWQCa5VhWLJws8ugMTuyKzyayw4Eh&export=download&authuser=0): Put pretrained xx-Tiny into folder "pretrained_ckpt/"
 
 
 ##  Prepare data
