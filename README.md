@@ -14,7 +14,7 @@ The Synapse and ACDC datasets we used are provided by the authors of TransUnet. 
 ##  Train/Test
 ### 1) Train
 ```bash
-CUDA_VISIBLE_DEVICES=0  python -W ignore test.py 
+CUDA_VISIBLE_DEVICES=0  python -W ignore train.py 
 ```
 ### 2) Testing
 #### Get pre-trained GCtx-UNet model weights for the Synapse dataset:  [link](https://panthers-my.sharepoint.com/:u:/g/personal/tzhao_uwm_edu/ER6J2LwtirFOip2m6u7hQt8BBdph8P2OrfI_Wmj8MNMQfg?e=7uiftc)
