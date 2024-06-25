@@ -98,7 +98,7 @@ def trainer_synapse(args, model, snapshot_path):
             save_mode_path = os.path.join(snapshot_path, 'epoch_' + str(epoch_num) + '.pth')
             torch.save(model.state_dict(), save_mode_path)
             logging.info("save model to {}".format(save_mode_path))
-            mean_dice,iou, mean_hd95 = inference(model, testloader, args, test_save_path=test_save_path)
+            #mean_dice,iou, mean_hd95 = inference(model, testloader, args, test_save_path=test_save_path)
             iterator.close()
             break
 
